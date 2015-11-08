@@ -7,9 +7,16 @@ function startTimer() {
 	timer = Date.now();
 	interval = setInterval(updateTime, 100); 
 	document.querySelector("#starter").innerHTML = "Cancel Trouble Timer";
-	document.querySelector("#starter").onclick = function() {
-		clearInterval(interval);
-	};
+	document.querySelector("#starter").removeEventListener("click", startTimer);
+	document.querySelector("#starter").addEventListener("click", stopTimer)
+}
+
+function stopTimer(){
+clearInterval(interval);
+document.querySelector("#countdown").innerHTML = "10 seconds";
+document.querySelector("#starter").innerHTML = "Start Trouble Timer";
+document.querySelector("#starter").removeEventListener("click", stopTimer);
+document.querySelector("#starter").addEventListener("click", startTimer);	
 }
 
 function updateTime() {
@@ -24,9 +31,12 @@ function updateTime() {
 	}
 }
 
+
+
+
 function timeIsUp() {
 	alert("BAD THINGS");
-};
+}});
 
 
 
